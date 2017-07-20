@@ -9,3 +9,9 @@ myApp.filter('clean',function(){
 		return str.toLowerCase().replace(/\s+/g,'-');
 	};
 });
+
+myApp.filter('clean',function(){
+	return function(str, separator){
+		return str.toLowerCase().replace(/\s+/g,separator||'-');
+	};
+});

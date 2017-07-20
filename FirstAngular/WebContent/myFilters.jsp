@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="well span4" style="margin-top:20px;" ng-controller="Ctrl">
-		{{ text|clean }}
+		{{ text|clean:'+' }}
 	</div>
 </body>
 </html>
