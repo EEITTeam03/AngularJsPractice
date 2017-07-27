@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html ng-app>
+<html >
 <head>
 <meta charset="UTF-8">
 <title>todo MVC</title>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+	<script type="text/javascript" src="js/myModule.js"></script>
 	<style type="text/css">
-		.div1 {
-			width: 600px;
-			margin: 0 auto;
-		}
-		h1{
-			 text-align: center;
-		}
-		input{
-			margin-left:190px;
-		}
+.div1 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+	margin-left: 190px;
+}
+
+.lineThrough {
+	text-decoration: line-through;
+}
+
+ul li {
+	list-style-type: none;
+}
 </style>
 </head>
-<body>
-	<div class = "div1">
-	<h1>todos</h1>
-	<form  ng-submit="submit()">
-		<input type="text" ng-model="skill" name="skill" />
-	</form>	
+<body ng-app="TodoAPP">
+	<div class="div1" ng-controller="Ctrl1">
+		<h1>todos</h1>
+		<form ng-submit="addtodo()" >
+			<input type="text" ng-model="inputString" name="inputString" />
+		</form>
+		
+		<ul  >
+			<li ng-repeat="myInput in myInputs" class="alert alert-info">
+			<input type="checkbox" name = "myBox" ng-model="useline" placeholder="What needs to be done?"/>
+				<span ng-class="{lineThrough: useline}">{{myInput}}</span>
+			<button type="button" class="close" ng-click="remove($index);">&times;</button>
+			</li>
+		</ul>
+		
 	</div>
 </body>
 </html>
