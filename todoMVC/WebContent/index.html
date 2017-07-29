@@ -51,11 +51,34 @@ ul li {
 #filters li a.selected {
 	border-color: rgba(175, 47, 47, 0.2);
 }
+
+#toggle-all {
+/*  position: absolute;  */
+/*  	top: -55px;  */
+/*  	left: -12px; */ 
+/*  	width: 60px; */ 
+/*  	height: 34px;  */
+/* 	text-align: center; */
+	border: none; /* Mobile Safari */
+}
+
+#toggle-all:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6;
+ 	padding: 10px 27px 10px 27px; 
+}
+
+#toggle-all:checked:before {
+	color: #737373;
+}
 </style>
 </head>
 <body ng-app="TodoAPP">
 	<div id="div1" ng-controller="Ctrl1">
 		<h1>todos</h1>
+		<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" ng-show="myInputs.length">
+		
 		<form ng-submit="addtodo()" >
 			<input type="text" ng-model="inputString" name="inputString" placeholder="What needs to be done?"/>
 		</form>
