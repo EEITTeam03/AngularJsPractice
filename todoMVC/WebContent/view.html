@@ -1,0 +1,10 @@
+<ul>
+	<li ng-repeat="myInput in myInputs" class="alert alert-info" ng-hide="isHide(myInput.status)">
+		<div >
+			<input type="checkbox" name="myBox" ng-model="myInput.status"
+				placeholder="What needs to be done?" /> <span
+				ng-class="{lineThrough: myInput.status}">{{myInput}}</span>
+			<button type="button" class="close" ng-click="remove($index);">&times;</button>
+		</div>
+	</li>
+</ul>

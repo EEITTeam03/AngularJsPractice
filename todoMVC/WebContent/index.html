@@ -6,8 +6,9 @@
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
 	<script type="text/javascript" src="js/myModule.js"></script>
+	<script src="http://code.angularjs.org/1.2.0-rc.2/angular-route.min.js"></script>
 	<style type="text/css">
-.div1 {
+#div1 {
 	width: 600px;
 	margin: 0 auto;
 }
@@ -27,24 +28,47 @@ input {
 ul li {
 	list-style-type: none;
 }
+
+
+#filters li {
+	display: inline;
+}
+
+#filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+#filters li a.selected,
+#filters li a:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+#filters li a.selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}
 </style>
 </head>
 <body ng-app="TodoAPP">
-	<div class="div1" ng-controller="Ctrl1">
+	<div id="div1" ng-controller="Ctrl1">
 		<h1>todos</h1>
 		<form ng-submit="addtodo()" >
 			<input type="text" ng-model="inputString" name="inputString" />
 		</form>
-		
-		<ul  >
-			<li ng-repeat="myInput in myInputs" class="alert alert-info">
-			<input type="checkbox" name = "myBox" ng-model="useline" placeholder="What needs to be done?"/>
-				<span ng-class="{lineThrough: useline}">{{myInput}}</span>
-			<button type="button" class="close" ng-click="remove($index);">&times;</button>
-			</li>
-			<li class="alert alert-info" ng-show="myInputs.length">123</li>
-		</ul>
-		
+		<div ng-view></div>
+
+		<div ng-show="myInputs.length">
+			<span></span>
+				<ul id = "filters">
+					<li><a ng-class="{selected: status == ''} " href="#/">All</a></li>
+					<li><a ng-class="{selected: status == 'active'} " href="#/actives">Active</a></li>
+					<li><a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a></li>
+				</ul>
+		</div>
 	</div>
 </body>
 </html>
