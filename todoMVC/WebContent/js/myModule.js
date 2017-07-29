@@ -8,9 +8,10 @@ var todoAPP = angular.module('TodoAPP',['ngRoute'],function(
 	});
 });
 
-todoAPP.controller('Ctrl1',['$scope','$routeParams',function(s,r){
+todoAPP.controller('Ctrl1',['$scope','$routeParams','$filter',function(s,r,f){
 	s.myInputs=[];
 	s.inputString='';
+	//s.count = 0;
 	s.addtodo = function() {
 		s.myInputs.push({text:s.inputString, status:false});
 		s.inputString='';
@@ -18,6 +19,12 @@ todoAPP.controller('Ctrl1',['$scope','$routeParams',function(s,r){
 	s.remove = function(index){
 		s.myInputs.splice(index, 1);
 	};
+	
+	//監控myInputs陣列元素的變化,第3個參數為true會呼叫equals方法來比較
+	s.$watch("myInputs", function(newValue, oldValue) {
+		
+		s.count = f('filter')(newValue,{ status: false }).length;
+	},true);
 	
 	//當route改變，看你點的是All、Active或Completed，該選項會有框線
 	s.$on('$routeChangeSuccess', function () {
@@ -35,7 +42,8 @@ todoAPP.controller('HideCtrl', ['$scope', '$routeParams',function(s,r){
 		}
 		else
 			return false;
-	};	
+	};
+	
 }])
 
 
