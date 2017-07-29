@@ -23,9 +23,12 @@ todoAPP.controller('Ctrl1',['$scope',function(s){
 
 todoAPP.controller('HideCtrl', ['$scope', '$routeParams',function(s,r){
 	s.isHide = function(status){
-		if(r.path == 'actives'){
+		if(r.path == 'active'){
 			return status;
-		}else
+		}else if(r.path == 'completed'){
+			return !status;
+		}
+		else
 			return false;
 	};
 }])
