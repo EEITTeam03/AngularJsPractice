@@ -1,9 +1,14 @@
 <ul>
 	<li ng-repeat="myInput in myInputs" class="alert alert-info" ng-hide="isHide(myInput.status)">
 		<div >
-			<input type="checkbox" name="myBox" ng-model="myInput.status"/> 
-			<span ng-class="{lineThrough: myInput.status}">{{myInput}}</span>
-			<button type="button" class="close" ng-click="remove($index);">&times;</button>
+			<input type="checkbox" name="myBox" ng-model="myInput.status" ng-hide = "editedTodo==myInput"/> 
+			<span ng-class="{lineThrough: myInput.status,todoSpan:true}" ng-dblclick="editTodo(myInput)" ng-hide="editedTodo==myInput">{{myInput.text}}</span>
+			<button type="button" class="close" ng-click="remove($index);" ng-hide="editedTodo==myInput">&times;</button>
+			
+			<form ng-show="editedTodo==myInput" ng-submit="saveEdits(myInput, 'submit')" >
+			<input class="edit" ng-model="myInput.text" ng-blur="saveEdits(myInput, 'blur')" todo-focus="myInput == editedTodo"/>
+			</form>
 		</div>
+		
 	</li>
-</ul>
+</ul> 

@@ -12,6 +12,7 @@ todoAPP.controller('Ctrl1', [ '$scope', '$routeParams', '$filter',
 		function(s, r, f) {
 			s.myInputs = [];
 			s.inputString = '';
+			s.editedTodo = null;
 			s.addtodo = function() {
 				s.myInputs.push({
 					text : s.inputString,
@@ -60,5 +61,18 @@ todoAPP.controller('HideCtrl', [ '$scope', '$routeParams', function(s, r) {
 		} else
 			return false;
 	};
-
+	
+	s.editTodo = function (todo) {
+		
+		s.editedTodo = todo;
+		
+		s.originalTodo = angular.extend({}, todo);
+		
+	};
+	
+	s.saveEdits = function(todo, event){
+		//alert(todo.text);
+		s.editedTodo = null;
+	};
+	
 } ])
