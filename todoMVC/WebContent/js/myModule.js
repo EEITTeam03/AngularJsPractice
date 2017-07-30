@@ -27,6 +27,7 @@ todoAPP.controller('Ctrl1', [ '$scope', '$routeParams', '$filter',
 			s.$watch("myInputs", function(newValue, oldValue) {
 
 				s.count = f('filter')(newValue, {status : false}).length;
+				s.completedCount = s.myInputs.length-s.count;
 				//如果陣列元素有未勾的選項，全選取消勾選
 				s.allChecked = !s.count;
 			}, true);
@@ -42,6 +43,10 @@ todoAPP.controller('Ctrl1', [ '$scope', '$routeParams', '$filter',
 						elt.status = status;
 					}
 				})
+			}
+			
+			s.clearCompletedTodos = function(){
+				s.myInputs = f('filter')(s.myInputs, {status : false});
 			}
 			
 		} ])

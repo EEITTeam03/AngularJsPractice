@@ -90,6 +90,7 @@ ul li {
 					<li><a ng-class="{selected: status == undefined} " href="#/">All</a></li>
 					<li><a ng-class="{selected: status == 'active'} " href="#/active">Active</a></li>
 					<li><a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a></li>
+					<li><button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount" class="">Clear completed</button></li>
 				</ul>
 		</div>
 	</div>
