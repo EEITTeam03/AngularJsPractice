@@ -10,7 +10,10 @@ var todoAPP = angular.module('TodoAPP', [ 'ngRoute' ],
 
 todoAPP.controller('Ctrl1', [ '$scope', '$routeParams', '$filter',
 		function(s, r, f) {
-			s.myInputs = [];
+			//開始時讀取localStorage看有沒有之前的存的，如果有的話就讀進來，沒有的話(null)就給空陣列
+			var storedItems = JSON.parse(localStorage.getItem("todo-list"));
+			console.log(storedItems);
+			s.myInputs = !!storedItems? storedItems :[];
 			s.inputString = '';
 			s.editedTodo = null;
 			s.addtodo = function() {
@@ -31,6 +34,8 @@ todoAPP.controller('Ctrl1', [ '$scope', '$routeParams', '$filter',
 				s.completedCount = s.myInputs.length-s.count;
 				//如果陣列元素有未勾的選項，全選取消勾選
 				s.allChecked = !s.count;
+				//陣列變化時存下來
+				localStorage.setItem('todo-list',JSON.stringify(s.myInputs));
 			}, true);
 
 			// 當route改變，看你點的是All、Active或Completed，該選項會有框線

@@ -1,5 +1,5 @@
 <ul>
-	<li ng-repeat="myInput in myInputs" class="alert alert-info" ng-hide="isHide(myInput.status)">
+	<li ng-repeat="myInput in myInputs track by $index" class="alert alert-info" ng-hide="isHide(myInput.status)">
 		<div >
 			<input type="checkbox" name="myBox" ng-model="myInput.status" ng-hide = "editedTodo==myInput"/> 
 			<span ng-class="{lineThrough: myInput.status,todoSpan:true}" ng-dblclick="editTodo(myInput)" ng-hide="editedTodo==myInput">{{myInput.text}}</span>
